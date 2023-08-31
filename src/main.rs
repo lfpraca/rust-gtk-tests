@@ -1,6 +1,6 @@
 use gtk::glib::clone;
+use gtk::{glib, Application, ApplicationWindow, Entry, Frame, Label, Orientation, PasswordEntry};
 use gtk::{prelude::*, Button};
-use gtk::{glib, Application, ApplicationWindow, Label, Orientation, Entry, PasswordEntry, Frame};
 
 const APP_ID: &str = "org.gtk_rs.HelloWorld2";
 
@@ -24,21 +24,18 @@ fn build_ui(app: &Application) {
         .margin_end(12)
         .build();
 
-    let entry_usuario = Entry::builder().build();
-
-    let frame_entry_usuario = Frame::builder()
+    let entry_usuario = Entry::builder()
         .margin_top(12)
         .margin_bottom(12)
         .margin_end(12)
         .tooltip_text("E-mail do usuário")
-        .child(&entry_usuario)
         .build();
 
     let box_usuario = gtk::Box::builder()
         .orientation(Orientation::Horizontal)
         .build();
     box_usuario.append(&label_usuario);
-    box_usuario.append(&frame_entry_usuario);
+    box_usuario.append(&entry_usuario);
 
     let label_senha = Label::builder()
         .label("Senha:")
@@ -49,12 +46,8 @@ fn build_ui(app: &Application) {
 
     let entry_senha = PasswordEntry::builder()
         .show_peek_icon(true)
-        .build();
-
-    let frame_entry_senha = Frame::builder()
         .margin_bottom(12)
         .margin_end(12)
-        .child(&entry_senha)
         .build();
 
     let box_senha = gtk::Box::builder()
@@ -62,7 +55,7 @@ fn build_ui(app: &Application) {
         .visible(false)
         .build();
     box_senha.append(&label_senha);
-    box_senha.append(&frame_entry_senha);
+    box_senha.append(&entry_senha);
 
     let ui_box = gtk::Box::builder()
         .orientation(Orientation::Vertical)
